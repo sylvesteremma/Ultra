@@ -1,0 +1,71 @@
+# Ultra Global Polytechnic - Backend Requirements
+# This file lists all the backend features needed to make this website fully functional
+
+## 1. Authentication System
+- Admin user registration and login
+- Password hashing (bcrypt recommended)
+- JWT (JSON Web Token) authentication
+- Session management
+- Protected routes for admin-only access
+- Password reset functionality (future enhancement)
+
+## 2. News Management API
+### Endpoints Needed:
+- `GET /api/news` - Get all news articles (public)
+- `GET /api/news/:id` - Get single news article by ID (public)
+- `GET /api/admin/news` - Get all news for admin (with draft/published status)
+- `POST /api/admin/news` - Create new news article (admin only)
+  - Accepts: title, excerpt, content, date, isPublished
+  - Image upload support (multipart/form-data)
+- `PUT /api/admin/news/:id` - Update existing news article (admin only)
+- `DELETE /api/admin/news/:id` - Delete news article (admin only)
+
+### Database Model (News Article):
+- id (primary key, auto-increment)
+- title (string, required)
+- excerpt (string, required)
+- content (text, required)
+- date (date, required)
+- imageUrl (string, nullable)
+- isPublished (boolean, default: true)
+- createdAt (timestamp)
+- updatedAt (timestamp)
+
+## 3. File Upload System
+- Image upload functionality
+- Support for JPG, PNG, GIF formats
+- File size limit (e.g., 10MB)
+- Image optimization (compression, resizing)
+- Storage solution (local file system or cloud storage like AWS S3, Cloudinary)
+- Unique file naming to avoid conflicts
+
+## 4. Page Management API (Future Enhancement)
+### Endpoints Needed:
+- `GET /api/pages/:slug` - Get page content by slug (public)
+- `GET /api/admin/pages` - Get all pages (admin only)
+- `POST /api/admin/pages` - Create new page (admin only)
+- `PUT /api/admin/pages/:id` - Update page (admin only)
+- `DELETE /api/admin/pages/:id` - Delete page (admin only)
+
+## 5. Media Library API (Future Enhancement)
+### Endpoints Needed:
+- `GET /api/admin/media` - List all uploaded media files
+- `POST /api/admin/media/upload` - Upload media file
+- `DELETE /api/admin/media/:id` - Delete media file
+
+## 6. Database Requirements
+- Relational database (PostgreSQL, MySQL, or SQLite for development)
+- ORM (Prisma, Sequelize, TypeORM recommended)
+
+## 7. Additional Features
+- CORS configuration for frontend-backend communication
+- Input validation and sanitization
+- Error handling middleware
+- API documentation (Swagger/OpenAPI recommended)
+- Logging system
+
+## 8. Tech Stack Recommendations (Backend)
+- Node.js with Express.js OR NestJS
+- Python with Django OR FastAPI
+- PHP with Laravel
+- Go with Gin/Gorilla
