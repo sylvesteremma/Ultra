@@ -1,0 +1,61 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      String   @default("admin")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  news      News[]
+}
+
+model News {
+  // Primary key with an auto-generated unique ID
+  id          String   @id @default(cuid())
+
+  // Title of the news article
+  title       String
+
+  // Short summary of the news
+  excerpt     String
+
+  // Full content of the news article
+  content     String
+
+  // Optional image URL
+  imageUrl    String?
+
+  // Publication status (defaults to true)
+  isPublished Boolean  @default(true)
+
+  // Date and time the article was published
+  publishedAt DateTime?
+
+  // Automatically set when the record is created
+  createdAt   DateTime @default(now())
+
+  // Automatically updated whenever the record changes
+  updatedAt   DateTime @updatedAt
+
+  // ID of the admin who created the article
+  authorId    String
+
+  // Relationship: Each news article belongs to one admin
+  author      Admin @relation(fields: [authorId], references: [id])
+}
