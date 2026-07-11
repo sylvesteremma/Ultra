@@ -4,9 +4,11 @@
   "description": "altra backend",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "dev": "nodemon src/server.js",
-    "start": "node src/server.js"
+    "start": "node src/server.js",
+    "postinstall": "prisma generate",
+    "migrate": "prisma migrate deploy"
   },
   "type": "module",
   "keywords": [],
@@ -14,6 +16,8 @@
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "^6.19.3",
+    "@supabase/ssr": "^0.12.0",
+    "@supabase/supabase-js": "^2.110.2",
     "bcrypt": "^6.0.0",
     "cloudinary": "^2.10.0",
     "compression": "^1.8.1",
