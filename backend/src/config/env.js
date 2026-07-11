@@ -16,22 +16,6 @@ dotenv.config({ path: ".env" });
 const env = cleanEnv(process.env, {
   DATABASE_URL: str(),
 
-  DIRECT_URL: str({
-    default: "",
-  }),
-
-  SUPABASE_URL: str({
-    default: "",
-  }),
-
-  SUPABASE_ANON_KEY: str({
-    default: "",
-  }),
-
-  SUPABASE_SERVICE_ROLE_KEY: str({
-    default: "",
-  }),
-
   JWT_SECRET: str(),
 
   PORT: port({
